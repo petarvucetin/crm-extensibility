@@ -27,16 +27,20 @@ namespace ArcherIncPlugin
         {
             try
             {
-                var ctx = context.ToJSon();
+                //var ctx = context.ToJSon();
 
-                var webAddress = new Uri("https://crm-archerinc.azurewebsites.net/api/Crm-ArcherIncHttp?code=Ggahdjw10AwqqgxmQmgQd/As1mx3mPtHTMVTgoc1ptOrjCMnu1MSOg==");
+                //design note: move to ConfigurationEntity or pass as configuration to plugin
+                //var webAddress = new Uri("https://crm-archerinc.azurewebsites.net/api/Crm-ArcherIncHttp?code=Ggahdjw10AwqqgxmQmgQd/As1mx3mPtHTMVTgoc1ptOrjCMnu1MSOg==");
+                var webAddress = new Uri("http://vm-crm2016.vm-crm2016.dev:7071/api/Crm-ArcherIncHttp");
+            
 
                 var postData = "{ 'name' : 'CRM Plugin' }";
 
                 using (WebClient client = new WebClient())
                 {
                     client.Headers["Content-Type"] = "application/json; charset=utf-8";
-                    var response = client.UploadString(webAddress, ctx);
+                    client.Headers["x-functions-key"] = "Ggahdjw10AwqqgxmQmgQd/As1mx3mPtHTMVTgoc1ptOrjCMnu1MSOg==";
+                    var response = client.UploadString(webAddress, postData);
                     return response;
                 }
             }

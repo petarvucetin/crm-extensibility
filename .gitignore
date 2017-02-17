@@ -40,3 +40,4 @@ src/JAMSIntegration/Migration/local.dtsConfig
 src/JAMS/CRM.WebResources/webresources/dispatch/bower_components
 .vs
 appsettings.json
+Properties
